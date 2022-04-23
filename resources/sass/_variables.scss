@@ -2,6 +2,18 @@
 $body-bg: #f6f8fd;
 
 // Typography
-$font-family-sans-serif: 'Poppins', sans-serif;
+$font-family-sans-serif: "Poppins", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+// Custom Color
+$theme-colors: (
+    "primary": #3b40c4,
+    "secondary": #9ca3af,
+    "success": #00ba88,
+    "danger": #ed2e7e,
+    "warning": #ffe600,
+    "info": #07afed,
+    "light": #f6f8fd,
+    "dark": #1f2128,
+);
