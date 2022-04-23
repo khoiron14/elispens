@@ -1,7 +1,7 @@
 <div class="page-sidebar">
     <div class="logo-box">
         <a href="#" class="logo-text">
-            <img src="{{ asset('images/logo.png') }}" alt="elispens" height="34">
+            <img src="{{ asset('images/logo1.png') }}" alt="elispens" height="34">
         </a>
         <a href="#" id="sidebar-close"><i class="material-icons">close</i></a>
         <a href="#" id="sidebar-state">

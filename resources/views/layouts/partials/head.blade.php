@@ -10,7 +10,7 @@
 <link rel="icon" sizes="16x16 32x32 64x64" href="{{ asset('favicon.ico') }}">
 <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}">
 
-<title>{{ config('app.name', 'Laravel') }}</title>
+<title>{{ config('app.name', 'ELISPENS') }}</title>
 
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
