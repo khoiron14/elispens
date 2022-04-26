@@ -29,15 +29,15 @@ class AuthServiceProvider extends ServiceProvider
 
         // For role check on blade
         Blade::if('admin', function () {
-            return auth()->check() && auth()->user->hasRole(User::ADMIN);
+            return auth()->check() && auth()->user()->hasRole(User::ADMIN);
         });
 
         Blade::if('lecturer', function () {
-            return auth()->check() && auth()->user->hasRole(User::LECTURER);
+            return auth()->check() && auth()->user()->hasRole(User::LECTURER);
         });
 
         Blade::if('student', function () {
-            return auth()->check() && auth()->user->hasRole(User::STUDENT);
+            return auth()->check() && auth()->user()->hasRole(User::STUDENT);
         });
     }
 }
