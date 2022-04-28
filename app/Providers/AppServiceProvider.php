@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // For change app locale
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
     }
