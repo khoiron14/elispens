@@ -17,9 +17,9 @@
 <div class="page-info">
     <div class="d-flex justify-content-between">
         <h1>
-            <strong>Manajemen Program Studi</strong>
+            <strong>Program Studi</strong>
         </h1>
-        <a href="{{ route('studyprograms.create') }}" class="btn btn-sm btn-primary align-self-start">Tambah</a>
+        <a href="{{ route('studyPrograms.create') }}" class="btn btn-sm btn-primary align-self-start">Tambah</a>
     </div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -39,30 +39,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($studyprograms as $studyprogram)
+            @foreach ($studyPrograms as $studyProgram)
             <tr>
-                <td>{{ $studyprogram->name }}</td>
+                <td>{{ $studyProgram->name }}</td>
                 <td>
-                    @if ($studyprogram->is_validated)
+                    @if ($studyProgram->is_validated)
                     <span class="text-success">Divalidasi</span>
                     @else 
-                    <form action="{{ route('studyprograms.validation', $studyprogram->id) }}" method="POST">
+                    <form action="{{ route('studyPrograms.validation', $studyProgram->id) }}" method="POST">
                         @csrf
                         <button class="btn btn-sm btn-success">Validasi</button>
                     </form>
                     @endif
                 </td>
                 <td class="d-flex">
-                    <a class="btn btn-sm btn-secondary mr-1" href="{{ route('studyprograms.edit', $studyprogram->id) }}">
+                    <a class="btn btn-sm btn-secondary mr-1" href="{{ route('studyPrograms.edit', $studyProgram->id) }}">
                         Ubah
                     </a>
-                    <form action="{{ route('studyprograms.destroy', $programstudy->id) }}" method="POST">
+                    <form action="{{ route('studyPrograms.destroy', $studyProgram->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" 
                             class="btn btn-sm btn-danger" 
                             onclick="return confirm('Apakah anda yakin ingin menghapus?')"
-                            @if (auth()->programstudy()->id == $programstudy->id) disabled @endif
                         >
                             Hapus
                         </button>
