@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +24,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('dashboard')->group(function () {
+    Route::middleware('admin')->group(function () {
+        Route::get('/', DashboardController::class)->name('dashboard');
+        Route::resource('users', UserController::class);
+        Route::post('users/{user}/validation', [UserController::class, 'validation'])->name('users.validation');
+    });
+});
