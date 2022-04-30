@@ -9,7 +9,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">M</li>
-            <li class="breadcrumb-item"><a href="{{ route('studyprograms.index') }}">Program Studi</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('study_programs.index') }}">Program Studi</a></li>
             <li class="breadcrumb-item active" aria-current="page">
                 Ubah
             </li>
@@ -17,7 +17,7 @@
     </nav>
 </div>
 <div class="main-wrapper">
-    <form action="{{ route(studyPrograms.update', $studyProgram) }}" method="POST">
+    <form action="{{ route('study_programs.update', $studyProgram) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="row">
@@ -30,7 +30,9 @@
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
-                   
+                </div>
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

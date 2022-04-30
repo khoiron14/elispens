@@ -19,7 +19,7 @@
         <h1>
             <strong>Program Studi</strong>
         </h1>
-        <a href="{{ route('studyPrograms.create') }}" class="btn btn-sm btn-primary align-self-start">Tambah</a>
+        <a href="{{ route('studyprograms.create') }}" class="btn btn-sm btn-primary align-self-start">Tambah</a>
     </div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -42,21 +42,11 @@
             @foreach ($studyPrograms as $studyProgram)
             <tr>
                 <td>{{ $studyProgram->name }}</td>
-                <td>
-                    @if ($studyProgram->is_validated)
-                    <span class="text-success">Divalidasi</span>
-                    @else 
-                    <form action="{{ route('studyPrograms.validation', $studyProgram->id) }}" method="POST">
-                        @csrf
-                        <button class="btn btn-sm btn-success">Validasi</button>
-                    </form>
-                    @endif
-                </td>
                 <td class="d-flex">
-                    <a class="btn btn-sm btn-secondary mr-1" href="{{ route('studyPrograms.edit', $studyProgram->id) }}">
+                    <a class="btn btn-sm btn-secondary mr-1" href="{{ route('studyprograms.edit', $studyProgram->id) }}">
                         Ubah
                     </a>
-                    <form action="{{ route('studyPrograms.destroy', $studyProgram->id) }}" method="POST">
+                    <form action="{{ route('studyprograms.destroy', $studyProgram->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" 
