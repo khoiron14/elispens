@@ -19,7 +19,7 @@
         <h1>
             <strong>Program Studi</strong>
         </h1>
-        <a href="{{ route('studyprograms.create') }}" class="btn btn-sm btn-primary align-self-start">Tambah</a>
+        <a href="{{ route('study_programs.create') }}" class="btn btn-sm btn-primary align-self-start">Tambah</a>
     </div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -43,10 +43,10 @@
             <tr>
                 <td>{{ $studyProgram->name }}</td>
                 <td class="d-flex">
-                    <a class="btn btn-sm btn-secondary mr-1" href="{{ route('studyprograms.edit', $studyProgram->id) }}">
+                    <a class="btn btn-sm btn-secondary mr-1" href="{{ route('study_programs.edit', $studyProgram->id) }}">
                         Ubah
                     </a>
-                    <form action="{{ route('studyprograms.destroy', $studyProgram->id) }}" method="POST">
+                    <form action="{{ route('study_programs.destroy', $studyProgram->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" 
