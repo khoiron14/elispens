@@ -10,7 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "@popperjs/core": "^2.10.2",
+        "popper.js": "^1.16.1",
         "axios": "^0.25",
         "bootstrap": "^4.6.1",
         "jquery": "^3.6.0",
