@@ -13,7 +13,7 @@ class StudyProgram extends Model
         'name',
     ];
 
-    public function Lecturer()
+    public function lecturers()
     {
         return $this->hasMany(Lecturer::class);
     }
