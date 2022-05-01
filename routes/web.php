@@ -18,6 +18,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//  Detail
+Route::get('/detail', function () {
+    return view('details.detailsExample');
+});
+
+// Register
+
+Route::get('/register-dosen', function() {
+    return view('auth.custom.register');
+});
+
+
+// Register mahasiswa
+
+Route::get('/register-mahasiswa', function() {
+    return view('auth.custom.registerMhs');
+});
+
+Route::get('/login-user', function() {
+    return view('auth.custom.login');
+});
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,0 +1,295 @@
+:root {
+    --color-main-brand: #3b40c4;
+    --color-carbon: #374151;
+    --color-grey: #f3f4f6;
+    --color-grey-2: #f0f0f0;
+}
+
+body {
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+/* Custom Class */
+.centered-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+a.my-custom-btn {
+    background: var(--color-main-brand) !important;
+    padding: 1rem 1.75rem !important;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: white;
+}
+button.my-custom-btn {
+    background: var(--color-main-brand) !important;
+    padding: 1rem 1.75rem !important;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: white !important;
+}
+
+a.my-custom-btn:hover {
+    opacity: 0.8;
+}
+button.my-custom-btn:hover {
+    opacity: 0.8;
+}
+a.my-custom-form-btn {
+    background: var(--color-main-brand) !important;
+    /* padding: 1rem 1.75rem !important; */
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: white;
+}
+button.my-custom-form-btn {
+    background: var(--color-main-brand) !important;
+    /* padding: 1rem 1.75rem !important; */
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: white !important;
+}
+
+a.my-custom-form-btn:hover {
+    opacity: 0.8;
+}
+button.my-custom-form-btn:hover {
+    opacity: 0.8;
+}
+
+.figure-rounded {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.footer-custom {
+    margin: 6rem;
+}
+
+.login-view form input[type="email"],
+.login-view form input[type="text"],
+.login-view form input[type="password"],
+.login-view form input[type="number"] {
+    padding: 1.5rem 1.5rem !important;
+    font-size: 1rem;
+    background-color: var(--color-grey);
+    border-radius: 10px;
+}
+
+/* My Custom Class */
+
+.headline {
+    margin-top: 2.5rem;
+}
+
+.headline h1 {
+    font-weight: 900;
+    color: var(--color-main-brand);
+    font-size: 3rem;
+}
+
+.headline p {
+    font-size: 1.25rem;
+}
+
+.headline form {
+    width: 60%;
+    margin-top: 2.25rem;
+    /* margin: 2.25rem auto !important; */
+}
+
+.headline form input[type="text"] {
+    /* padding: 1.75rem 1.5rem !important; */
+    font-size: 1rem;
+    border-radius: 10px;
+    color: var(--color-carbon) !important;
+    background-color: var(--color-grey);
+}
+
+.headline form .custom-select {
+    /* padding: 0.5rem 0.75rem; */
+    font-size: 1rem;
+    border-radius: 10px;
+    color: var(--color-carbon) !important;
+    background-color: var(--color-grey);
+}
+
+.main {
+    margin-top: 4.8rem;
+    margin-bottom: 9rem;
+}
+
+.main .main-section figure figcaption {
+    color: var(--color-carbon);
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+.main .main-section figure img {
+    transition: all 0.2s ease;
+}
+
+.main .main-section figure:hover img {
+    filter: grayscale(50%);
+    transform: translateY(-5px);
+}
+
+/* pages/login.html */
+
+.separate-view {
+    display: flex;
+}
+
+.images-view {
+    flex-basis: 50%;
+    background-color: blue;
+    height: 100vh;
+}
+
+.images-view .images {
+    background-image: url(../images/login/Img.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.login-view {
+    height: 100vh;
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-view .login-view-box {
+    margin-left: -7rem;
+}
+
+.login-view .login-view-box a {
+    margin-bottom: 3.5rem;
+}
+
+.login-view .login-view-box h1 {
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 3.5rem;
+}
+
+.login-view .login-view-box form {
+    width: 150%;
+}
+
+.login-view .login-view-box form button {
+    background: var(--color-main-brand) !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+
+.login-view .login-view-box form button:hover {
+    opacity: 0.8;
+}
+
+.have {
+    margin-top: 1.25rem;
+}
+
+.have a {
+    text-decoration: none;
+    columns: var(--color-main-brand);
+    font-weight: 600;
+}
+
+/* end - pages/login.html */
+
+/* pages/register.html */
+.login-view .login-view-box.register {
+    margin-left: -10.1rem;
+}
+
+.login-view .login-view-box .register {
+    width: 180%;
+}
+
+.login-view .login-view-box.register a {
+    margin-bottom: 1rem;
+}
+.login-view .login-view-box.register h1 {
+    margin-bottom: 1rem;
+}
+
+/* end - pages/register.html */
+
+/* pages/detail.html */
+
+.container.main-detail-page {
+    padding: 0 2rem;
+}
+
+.main-detail-page {
+    margin-top: 5rem;
+}
+
+.main-detail-page figure {
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.main-detail-page .info .head {
+    font-weight: 600;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    margin-top: -0.5rem;
+}
+
+.main-detail-page .info .detail-info {
+    margin-bottom: 1rem;
+}
+
+.main-detail-page .info .title h2 {
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+.main-detail-page .info .value h2 {
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+
+.main-detail-page .button-info {
+    margin-top: 2rem;
+}
+
+.button-info a.my-custom-btn.not-active {
+    background-color: var(--color-grey-2) !important;
+    color: black !important;
+}
+.button-info .col-2 {
+    margin-right: 1rem;
+}
+/* end - pages/detail.html */
+
+/* Modal */
+
+.btn-modal {
+    width: 100% !important;
+}
+
+/* end btn modal */
