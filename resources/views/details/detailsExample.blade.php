@@ -1,39 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+@extends('layouts.custom.head')
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/css/custom.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>Detail page</title>
-  </head>
-  <body>
+    @section('navbar')
     <div class="container">
-      <nav class="navbar navbar-light bg-transparent py-xl-5">
+    <nav class="navbar navbar-light bg-transparent py-xl-5">
         <a class="navbar-brand" href="/">
-          <img src="/images/Logo.svg" alt="" />
+        <img src="/images/Logo.svg" alt="" />
         </a>
 
-        <a class="my-custom-btn px-4 py-1" href="login.html"> Masuk </a>
-      </nav>
+        <a
+        class="my-custom-btn px-4 py-1"
+        href="#"
+        data-target="#modalLogin"
+        data-toggle="modal"
+        >
+        Masuk
+        </a>
+    </nav>
     </div>
+    @endsection
 
+    @section('content')
     <div class="container main-detail-page">
       <div class="row">
         <div class="col-4">
@@ -108,15 +94,44 @@
       </a>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+    @endsection
+
+    @section('modal')
+    <div
+      class="modal fade"
+      tabindex="-1"
+      id="modalLogin"
+      aria-labelledby="modalLogin"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Daftar Sebagai</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <a
+              class="my-custom-btn px-4 py-1 btn-block btn-outline"
+              href="/register-dosen"
+            >
+              Dosen
+            </a>
+            <a
+              class="my-custom-btn px-4 py-1 btn-block btn-outline"
+              href="/register-mahasiswa"
+            >
+              Mahasiswa
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endsection
