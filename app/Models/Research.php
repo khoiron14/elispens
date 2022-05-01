@@ -5,16 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StudyProgram extends Model
+class Research extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'title',
+        'event',
+        'year',
     ];
 
-    public function lecturers()
+    public function lecturerResearch()
     {
-        return $this->hasMany(Lecturer::class);
+        return $this->hasMany(LecturerResearch::class);
     }
 }

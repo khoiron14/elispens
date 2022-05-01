@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StudyProgram extends Model
+class Certificate extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'lecturer_id',
+        'subject',
+        'publisher',
+        'date',
     ];
 
-    public function lecturers()
+    public function lecturerId()
     {
-        return $this->hasMany(Lecturer::class);
+        return $this->belongsTo(Lecturer::class);
     }
 }
