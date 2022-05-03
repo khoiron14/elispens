@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 //  Detail
 Route::get('/detail', function () {
     return view('details.detailsExample');
@@ -25,22 +23,10 @@ Route::get('/detail', function () {
 
 // Register
 
-Route::get('/register-dosen', function() {
-    return view('auth.custom.register');
+Auth::routes(['register' => false]);
+
+Route::middleware('guest')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('register/{type}', [RegisterController::class, 'showRegistrationForm'])->name('register.create');
+    Route::post('register', [RegisterController::class, 'register'])->name('register.store');
 });
-
-
-// Register mahasiswa
-
-Route::get('/register-mahasiswa', function() {
-    return view('auth.custom.registerMhs');
-});
-
-Route::get('/login-user', function() {
-    return view('auth.custom.login');
-});
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
