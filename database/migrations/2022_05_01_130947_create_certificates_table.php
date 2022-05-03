@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('certificates', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->unsignedTinyInteger('role');
-            $table->boolean('is_validated')->default(false);
-            $table->rememberToken();
+            $table->foreignId('lecturer_id')->constrained()->cascadeOnDelete();
+            $table->string('subject');
+            $table->string('publisher');
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('certificates');
     }
 };

@@ -12,7 +12,11 @@
     <div class="page-sidebar-inner slimscroll">
         <ul class="accordion-menu">
             <li class="{{ request()->routeIs('dashboard*') ? 'active-page' : '' }}">
-                <a href="index.html" class="active"><i class="material-icons-outlined">dashboard</i>Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="active"><i class="material-icons-outlined">dashboard</i>Dashboard</a>
+            </li>
+            <li class="sidebar-title">Manajemen</li>
+            <li class="{{ request()->routeIs('users*') ? 'active-page' : '' }}">
+                <a href="{{ route('users.index') }}" class="active"><i class="material-icons-outlined">person</i>User</a>
             </li>
         </ul>
     </div>
