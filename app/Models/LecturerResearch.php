@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LecturerResearch extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'lecturer_id',
         'research_id',
@@ -18,6 +19,7 @@ class LecturerResearch extends Model
     {
         return $this->belongsTo(Lecturer::class);
     }
+    
     public function research()
     {
         return $this->belongsTo(Research::class);

@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Student extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'lecturer_id',
-        'name',
-        'url',
+        'user_id',
+        'nrp',
+        'address',
+        'phone',
+        'gender',
     ];
 
-    public function lecturer()
+    public function user()
     {
-        return $this->belongsTo(Lecturer::class);
+        return $this->belongsTo(User::class);
     }
 }

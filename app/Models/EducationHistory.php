@@ -17,7 +17,8 @@ class EducationHistory extends Model
         'year',
     ];
 
-    public function lecturer(){
+    public function lecturer()
+    {
         return $this->belongsTo(Lecturer::class);
     }
 
