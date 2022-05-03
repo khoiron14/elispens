@@ -16,7 +16,7 @@ class Certificate extends Model
         'date',
     ];
 
-    public function lecturerId()
+    public function lecturer()
     {
         return $this->belongsTo(Lecturer::class);
     }
