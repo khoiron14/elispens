@@ -19,9 +19,9 @@ class Course extends Model
         'name',
     ];
 
-    public function user()
+    public function teachHistory()
     {
-        return $this->belongsTo( related: User::class);
+        return $this->hasMany(TeachHistory::class);
     }
 
 }
