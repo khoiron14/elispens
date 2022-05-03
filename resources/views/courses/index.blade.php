@@ -17,7 +17,7 @@
 <div class="page-info">
     <div class="d-flex justify-content-between">
         <h1>
-            <strong>Manajemen Course</strong>
+            <strong>Manajemen Mata Kuliah</strong>
         </h1>
         <a href="{{ route('courses.create') }}" class="btn btn-sm btn-primary align-self-start">Tambah</a>
     </div>
@@ -25,7 +25,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Manajemen</li>
             <li class="breadcrumb-item active" aria-current="page">
-                Course
+                Mata Kuliah
             </li>
         </ol>
     </nav>
@@ -34,7 +34,7 @@
     <table id="table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Kode MK</th>
+                <th>Kode</th>
                 <th>Nama</th>
             </tr>
         </thead>
@@ -43,16 +43,6 @@
             <tr>
                 <td>{{ $course->code }}</td>
                 <td>{{ $course->name }}</td>
-                <td>
-                    @if ($course->is_validated)
-                    <span class="text-success">Divalidasi</span>
-                    @else 
-                    <form action="{{ route('courses.validation', $course->id) }}" method="POST">
-                        @csrf
-                        <button class="btn btn-sm btn-success">Validasi</button>
-                    </form>
-                    @endif
-                </td>
                 <td class="d-flex">
                     <a class="btn btn-sm btn-secondary mr-1" href="{{ route('courses.edit', $course->id) }}">
                         Ubah
@@ -63,7 +53,6 @@
                         <button type="submit" 
                             class="btn btn-sm btn-danger" 
                             onclick="return confirm('Apakah anda yakin ingin menghapus?')"
-                            @if (auth()->course()->id == $course->id) disabled @endif
                         >
                             Hapus
                         </button>
@@ -74,7 +63,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Kode MK</th>
+                <th>Kode</th>
                 <th>Nama</th>
             </tr>
         </tfoot>
