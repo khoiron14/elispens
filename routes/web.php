@@ -23,15 +23,17 @@ Route::get('/detail', function () {
     return view('details.detailsExample');
 });
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Auth::routes(['register' => false]);
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('register', fn () => abort(404));
     Route::get('register/{type}', [RegisterController::class, 'showRegistrationForm'])->name('register.create');
     Route::post('register', [RegisterController::class, 'register'])->name('register.store');
 });
 
-Route::prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->middleware('validated')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::resource('users', UserController::class);

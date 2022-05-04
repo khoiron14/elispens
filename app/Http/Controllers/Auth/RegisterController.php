@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -51,6 +52,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'nip' => [Rule::requiredIf(array_key_exists('nip', $data)), 'string', 'max:18', 'unique:lecturers'],
+            'nrp' => [Rule::requiredIf(array_key_exists('nrp', $data)), 'string', 'max:10', 'unique:students'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -71,15 +74,20 @@ class RegisterController extends Controller
         ]);
 
         if (array_key_exists('nip', $data)) {
-
+            tap($user)->update(['role' => User::LECTURER])
+                ->lecturer()->create(['nip' => $data['nip']]);
         } elseif (array_key_exists('nrp', $data)) {
-            
+            tap($user)->update(['role' => User::STUDENT])
+                ->student()->create(['nrp' => $data['nrp']]);
+        } else {
+            $user->delete();
+            abort(401);
         }
 
         return $user;
     }
 
-        /**
+    /**
      * Show the application registration form.
      *
      * @return \Illuminate\View\View
@@ -90,6 +98,6 @@ class RegisterController extends Controller
             abort(404);
         }
 
-       return view('auth.register');
+        return view('auth.register');
     }
 }

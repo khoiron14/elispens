@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('study_program_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('nip')->unique();
+            $table->string('nip', 18)->unique();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->enum('gender', ['M', 'F'])->nullable();
