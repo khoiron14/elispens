@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,5 +39,6 @@ Route::prefix('dashboard')->middleware('validated')->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::resource('users', UserController::class);
         Route::post('users/{user}/validation', [UserController::class, 'validation'])->name('users.validation');
+        Route::resource('study-programs', StudyProgramController::class)->except('show')->names('study_programs');
     });
 });
