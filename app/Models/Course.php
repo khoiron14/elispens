@@ -9,6 +9,8 @@ class Course extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'code',
         'name',
