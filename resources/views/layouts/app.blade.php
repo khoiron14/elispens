@@ -6,13 +6,13 @@
 </head>
 
 <body>
-    @if (!(request()->routeIs('login/*') || request()->routeIs('register/*')))
+    @if (!(request()->routeIs('login*') || request()->routeIs('register*')))
         @include('layouts.partials.nav')
     @endif
 
     @yield('content')
 
-    @if (!(request()->routeIs('login/*') || request()->routeIs('register/*')))
+    @if (!(request()->routeIs('login*') || request()->routeIs('register*')))
         @include('layouts.partials.footer')
     @endif
 
