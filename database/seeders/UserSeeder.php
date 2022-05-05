@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin ELISPENS',
             'email' => 'admin@elispens.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'is_validated' => true
         ]);
     }
 }

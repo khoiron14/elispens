@@ -21,7 +21,7 @@
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-@if (request()->routeIs('dashboard/*'))
+@if (Request::is('dashboard*'))
 <!-- Theme Styles -->
 <link href="{{ asset('css/connect.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('css/admin4.css') }}" rel="stylesheet" />
