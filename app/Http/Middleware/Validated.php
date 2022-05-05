@@ -17,7 +17,7 @@ class Validated
      */
     public function handle(Request $request, Closure $next)
     {
-        return Auth::check() && Auth::user()->is_validated 
+        return Auth::user()->is_validated 
             ? $next($request) 
             : response()->view('errors.must-validated');
     }

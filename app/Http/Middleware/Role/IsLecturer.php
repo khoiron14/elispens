@@ -18,6 +18,6 @@ class IsLecturer
      */
     public function handle(Request $request, Closure $next)
     {
-        return Auth::check() && Auth::user()->role == User::LECTURER ? $next($request) : abort(401);
+        return Auth::user()->role == User::LECTURER ? $next($request) : abort(401);
     }
 }

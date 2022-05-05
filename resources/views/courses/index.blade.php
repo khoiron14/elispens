@@ -36,6 +36,7 @@
             <tr>
                 <th>Kode</th>
                 <th>Nama</th>
+                <th>Opsi</th>
             </tr>
         </thead>
         <tbody>
@@ -65,6 +66,7 @@
             <tr>
                 <th>Kode</th>
                 <th>Nama</th>
+                <th>Opsi</th>
             </tr>
         </tfoot>
     </table>

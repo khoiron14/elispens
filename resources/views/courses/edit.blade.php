@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label for="code">Kode</label>
                     <input type="text" class="form-control @error('code') is-invalid @enderror" id="code"
-                        name="code" value="{{ old('code', $course->code) }}" placeholder="Tulis Kode Mata Kuliah" disabled>
+                        name="code" value="{{ old('code', $course->code) }}" placeholder="Tulis Kode Mata Kuliah" required>
                     @error('code')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

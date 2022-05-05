@@ -22,6 +22,9 @@
             <li class="{{ request()->routeIs('study_programs*') ? 'active-page' : '' }}">
                 <a href="{{ route('study_programs.index') }}" class="active"><i class="material-icons-outlined">local_library</i>Program Studi</a>
             </li>
+            <li class="{{ request()->routeIs('courses*') ? 'active-page' : '' }}">
+                <a href="{{ route('courses.index') }}" class="active"><i class="material-icons-outlined">book</i>Mata Kuliah</a>
+            </li>
             @endadmin
         </ul>
     </div>

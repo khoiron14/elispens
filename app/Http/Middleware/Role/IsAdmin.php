@@ -18,6 +18,6 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        return Auth::check() && Auth::user()->role == User::ADMIN ? $next($request) : abort(401);
+        return Auth::user()->role == User::ADMIN ? $next($request) : abort(401);
     }
 }
