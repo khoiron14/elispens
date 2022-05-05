@@ -24,10 +24,10 @@
                         </div>
                         <div class="modal-body">
                             <a href="{{ route('register.create', 'lecturer') }}" class="btn btn-primary btn-block">
-                                <strong>Dosen</strong>
+                                <i class="material-icons-outlined align-middle">co_present</i><strong class="align-bottom">&nbsp;Dosen</strong>
                             </a>
                             <a href="{{ route('register.create', 'student') }}" class="btn btn-primary btn-block">
-                                <strong>Mahasiswa</strong>
+                                <i class="material-icons-outlined align-middle">school</i><strong class="align-bottom">&nbsp;Mahasiswa</strong>
                             </a>
                         </div>
                     </div>

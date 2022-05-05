@@ -3,14 +3,13 @@
 @push('script')
 <script>
     $(document).ready(function() {
+        $('#identity').attr('disabled', $('#role').val() == '0');
+        
         $('#role').change((event) => {
             // if the selected role is admin
-            // then input nip or nrp disabled
-            if ($(event.target).val() == 0) {
-                $('#identity').attr('disabled', true);
-            } else {
-                $('#identity').attr('disabled', false);
-            }
+            // then input nip or nrp disabled and reset
+            $('#identity').attr('disabled', $(event.target).val() == '0');
+            $(event.target).val() == '0' ? $('#identity').val('') : '';
         });
     });
 </script>
@@ -52,7 +51,9 @@
                     <label for="role">Role</label>
                     <select class="form-control @error('role') is-invalid @enderror custom-select" id="role"
                         name="role" required>
-                        <option value="0" @selected(old('role')==0)>Admin</option>
+                        <option value="0" @selected(old('role')=='0')>Admin</option>
+                        <option value="1" @selected(old('role')=='1')>Dosen</option>
+                        <option value="2" @selected(old('role')=='2')>Mahasiswa</option>
                     </select>
                     @error('role')
                     <span class="invalid-feedback" role="alert">
@@ -67,7 +68,7 @@
                 <div class="form-group">
                     <label for="identity">NIP / NRP</label>
                     <input type="text" class="form-control @error('identity') is-invalid @enderror" id="identity"
-                        name="identity" value="{{ old('identity') }}" placeholder="Tulis NIP / NRP" disabled>
+                        name="identity" value="{{ old('identity') }}" placeholder="Tulis NIP / NRP" required>
                     @error('identity')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

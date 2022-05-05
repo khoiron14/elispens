@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -52,8 +51,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'nip' => [Rule::requiredIf(array_key_exists('nip', $data)), 'string', 'max:18', 'unique:lecturers'],
-            'nrp' => [Rule::requiredIf(array_key_exists('nrp', $data)), 'string', 'max:10', 'unique:students'],
+            'nip' => ['sometimes', 'required', 'string', 'max:18', 'unique:lecturers'],
+            'nrp' => ['sometimes', 'required', 'string', 'max:10', 'unique:students'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);

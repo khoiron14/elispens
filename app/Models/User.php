@@ -53,10 +53,10 @@ class User extends Authenticatable
     protected function roleName(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => 
-                $value == self::ADMIN ? "Admin" : 
-                ($value == self::LECTURER ? "Dosen" : 
-                ($value == self::STUDENT ? "Mahasiswa" : "Tidak Diketahui")),
+            get: fn () => 
+                $this->role == self::ADMIN ? "Admin" : 
+                ($this->role == self::LECTURER ? "Dosen" : 
+                ($this->role == self::STUDENT ? "Mahasiswa" : "Tidak Diketahui")),
         );
     }
 

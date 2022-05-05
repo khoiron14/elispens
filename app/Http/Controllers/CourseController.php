@@ -42,7 +42,7 @@ class CourseController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        Course::create($request->only(['code', 'name']));
+        Course::create($request->only('code', 'name'));
 
         return redirect()->route('courses.index')->withSuccess('Data mata kuliah berhasil ditambahkan.');
     }
@@ -72,7 +72,7 @@ class CourseController extends Controller
             'name' => 'required|string|max:255'
         ]);
 
-        $course->update($request->only(['code', 'name']));
+        $course->update($request->only('code', 'name'));
 
         return redirect()->route('courses.index')->withSuccess('Data mata kuliah berhasil diubah.');
     }
