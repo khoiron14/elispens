@@ -1,6 +1,5 @@
 @extends('layouts.dashboard')
 
-
 @section('content')
 <div class="page-info">
     <h1>

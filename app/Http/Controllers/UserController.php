@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -53,6 +54,7 @@ class UserController extends Controller
         $request->validate($rules);
 
         $user = User::create($request->merge([
+            'password' => Hash::make($request->password),
             'is_validated' => true
         ])->only('name', 'email', 'password', 'role', 'is_validated'));
 
@@ -103,15 +105,17 @@ class UserController extends Controller
         ];
 
         if ($user->hasRole(User::LECTURER)) {
-            $rules['identity'] = 'required|string|max:18|unique:lecturers,nip';
+            $rules['identity'] = 'required|string|max:18|unique:lecturers,nip,' . $user->lecturer->id;
         } else if ($user->hasRole(User::STUDENT)) {
-            $rules['identity'] = 'required|string|max:10|unique:students,nrp';
+            $rules['identity'] = 'required|string|max:10|unique:students,nrp,' . $user->student->id;
         }
 
         $request->validate($rules);
 
         if ($request->filled('password')) {
-            $user->update($request->all());
+            $user->update($request->merge([
+                'password' => Hash::make($request->password)
+            ])->only('name', 'email', 'password'));
         } else {
             $user->update($request->except('password', 'password_confirmation'));
         }

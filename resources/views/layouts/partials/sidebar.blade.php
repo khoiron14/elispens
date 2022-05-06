@@ -26,6 +26,13 @@
                 <a href="{{ route('courses.index') }}" class="active"><i class="material-icons-outlined">book</i>Mata Kuliah</a>
             </li>
             @endadmin
+
+            @lecturer
+            <li class="{{ request()->routeIs('profile*') ? 'active-page' : '' }}">
+                <a href="{{ route('profile.index', auth()->user()) }}" class="active"><i class="material-icons-outlined">account_circle</i>Profil</a>
+            </li>
+            <li class="sidebar-title">Manajemen</li>
+            @endlecturer
         </ul>
     </div>
 </div>

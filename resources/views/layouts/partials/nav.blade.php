@@ -6,7 +6,11 @@
     
         <div>
             @if (auth()->check())
+            @admin
             <a class="my-custom-btn" href="{{ route('dashboard') }}">Dashboard</a>
+            @else
+            <a class="my-custom-btn" href="{{ route('profile.index', auth()->user()) }}">Profil</a>
+            @endadmin
             @else
             <a class="my-custom-btn" href="{{ route('login') }}">Masuk</a>
             <a class="my-custom-btn" href="" data-toggle="modal" data-target="#registerModal">Daftar</a>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -36,11 +37,15 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::prefix('dashboard')->middleware(['auth', 'validated'])->group(function () {
-    Route::middleware('admin')->group(function () {
+    Route::middleware('role:admin')->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::resource('users', UserController::class);
         Route::post('users/{user}/validation', [UserController::class, 'validation'])->name('users.validation');
         Route::resource('study-programs', StudyProgramController::class)->except('show')->names('study_programs');
         Route::resource('courses', CourseController::class)->except('show');
+    });
+    Route::middleware('role:admin,lecturer,student')->group(function () {
+        Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile.index');
+        Route::post('profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
     });
 });
