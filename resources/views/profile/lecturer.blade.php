@@ -68,16 +68,23 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="study_program_id">Program Studi</label>
-                <select class="js-states form-control @error('study_program_id') is-invalid @enderror"
-                    id="study_program_id" name="study_program_id" tabindex="-1" style="display: none; width: 100%">
-                    <option id="-1" search="" value="{{ null }}" hidden selected>Pilih Program Studi</option>
-                    @foreach ($studyPrograms as $studyProgram)
-                    <option value="{{ $studyProgram->id }}" @selected( old('study_program_id',$user->lecturer->study_program_id)==$studyProgram->id)>
-                        {{ $studyProgram->name }}
-                    </option>
-                    @endforeach
-                </select>
+                <div class="form-group">
+                    <label for="study_program_id">Program Studi</label>
+                    <select class="js-states form-control @error('study_program_id') is-invalid @enderror"
+                        id="study_program_id" name="study_program_id" tabindex="-1" style="display: none; width: 100%">
+                        <option id="-1" search="" value="{{ null }}" hidden selected>Pilih Program Studi</option>
+                        @foreach ($studyPrograms as $studyProgram)
+                        <option value="{{ $studyProgram->id }}" @selected(old('study_program_id',$user->lecturer->study_program_id)==$studyProgram->id)>
+                            {{ $studyProgram->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @error('study_program_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
             </div>
         </div>
         <div class="row">
@@ -134,16 +141,21 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="gender">Jenis Kelamin</label>
-                    <div id="gender">
+                    <div class="form-control" id="gender">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="gender-m" value="M">
+                            <input class="form-check-input" type="radio" name="gender" id="gender-m" value="M" @checked(old('gender',$user->lecturer->gender)=='M')>
                             <label class="form-check-label" for="gender-m">Laki-laki</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="gender-f" value="F">
+                            <input class="form-check-input" type="radio" name="gender" id="gender-f" value="F" @checked(old('gender',$user->lecturer->gender)=='F')>
                             <label class="form-check-label" for="gender-f">Perempuan</label>
                         </div>
                     </div>
+                    @error('gender')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-6">

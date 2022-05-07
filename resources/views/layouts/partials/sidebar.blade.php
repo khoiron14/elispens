@@ -35,6 +35,9 @@
             <li class="{{ request()->routeIs('certificates*') ? 'active-page' : '' }}">
                 <a href="{{ route('certificates.index') }}" class="active"><i class="material-icons-outlined">description</i>Sertifikat</a>
             </li>
+            <li class="{{ request()->routeIs('teaches*') ? 'active-page' : '' }}">
+                <a href="{{ route('teaches.index') }}" class="active"><i class="material-icons-outlined">history_edu</i>Riwayat Mengajar</a>
+            </li>
             @endlecturer
         </ul>
     </div>

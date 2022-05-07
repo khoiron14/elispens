@@ -33,4 +33,9 @@ class Lecturer extends Model
     {
         return $this->hasMany(Certificate::class);
     }
+
+    public function teaches()
+    {
+        return $this->hasMany(TeachHistory::class);
+    }
 }

@@ -16,7 +16,7 @@ class Course extends Model
         'name',
     ];
 
-    public function teachHistory()
+    public function histories()
     {
         return $this->hasMany(TeachHistory::class);
     }

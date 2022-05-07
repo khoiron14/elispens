@@ -54,9 +54,9 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: fn () => 
-                $this->role == self::ADMIN ? "Admin" : 
-                ($this->role == self::LECTURER ? "Dosen" : 
-                ($this->role == self::STUDENT ? "Mahasiswa" : "Tidak Diketahui")),
+                $this->role == self::ADMIN ? 'Admin' : 
+                ($this->role == self::LECTURER ? 'Dosen' : 
+                ($this->role == self::STUDENT ? 'Mahasiswa' : 'Tidak Diketahui')),
         );
     }
 
