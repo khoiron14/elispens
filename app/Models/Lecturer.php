@@ -29,13 +29,18 @@ class Lecturer extends Model
         return $this->belongsTo(StudyProgram::class);
     }
 
-    public function certificates()
+    public function educations()
     {
-        return $this->hasMany(Certificate::class);
+        return $this->hasMany(Education::class);
     }
 
     public function teaches()
     {
         return $this->hasMany(TeachHistory::class);
+    }
+
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
     }
 }

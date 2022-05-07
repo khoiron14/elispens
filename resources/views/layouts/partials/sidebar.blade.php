@@ -32,11 +32,14 @@
                 <a href="{{ route('profile.index', auth()->user()) }}" class="active"><i class="material-icons-outlined">account_circle</i>Profil</a>
             </li>
             <li class="sidebar-title">Manajemen</li>
-            <li class="{{ request()->routeIs('certificates*') ? 'active-page' : '' }}">
-                <a href="{{ route('certificates.index') }}" class="active"><i class="material-icons-outlined">description</i>Sertifikat</a>
+            <li class="{{ request()->routeIs('educations*') ? 'active-page' : '' }}">
+                <a href="{{ route('educations.index') }}" class="active"><i class="material-icons-outlined">school</i>Riwayat Pendidikan</a>
             </li>
             <li class="{{ request()->routeIs('teaches*') ? 'active-page' : '' }}">
                 <a href="{{ route('teaches.index') }}" class="active"><i class="material-icons-outlined">history_edu</i>Riwayat Mengajar</a>
+            </li>
+            <li class="{{ request()->routeIs('certificates*') ? 'active-page' : '' }}">
+                <a href="{{ route('certificates.index') }}" class="active"><i class="material-icons-outlined">description</i>Sertifikat</a>
             </li>
             @endlecturer
         </ul>

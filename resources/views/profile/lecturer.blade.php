@@ -22,7 +22,7 @@
 @section('content')
 <div class="page-info">
     <h1>
-        <strong>Profil User</strong>
+        <strong>Profil Dosen</strong>
     </h1>
 </div>
 <div class="main-wrapper">
@@ -120,8 +120,9 @@
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                         name="password" aria-describedby="passwordHelp" placeholder="Tulis Password"
                         autocomplete="new-password">
-                    <small id="passwordHelp" class="form-text text-muted">Kosongkan jika tidak ingin mengubah
-                        password.</small>
+                    <small id="passwordHelp" class="form-text text-muted">
+                        Kosongkan jika tidak ingin mengubah password.
+                    </small>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
