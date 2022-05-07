@@ -32,6 +32,9 @@
                 <a href="{{ route('profile.index', auth()->user()) }}" class="active"><i class="material-icons-outlined">account_circle</i>Profil</a>
             </li>
             <li class="sidebar-title">Manajemen</li>
+            <li class="{{ request()->routeIs('certificates*') ? 'active-page' : '' }}">
+                <a href="{{ route('certificates.index') }}" class="active"><i class="material-icons-outlined">description</i>Sertifikat</a>
+            </li>
             @endlecturer
         </ul>
     </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -43,6 +44,9 @@ Route::prefix('dashboard')->middleware(['auth', 'validated'])->group(function ()
         Route::post('users/{user}/validation', [UserController::class, 'validation'])->name('users.validation');
         Route::resource('study-programs', StudyProgramController::class)->except('show')->names('study_programs');
         Route::resource('courses', CourseController::class)->except('show');
+    });
+    Route::middleware('role:lecturer')->group(function () {
+        Route::resource('certificates', CertificateController::class)->except('show');
     });
     Route::middleware('role:admin,lecturer,student')->group(function () {
         Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile.index');

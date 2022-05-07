@@ -28,4 +28,9 @@ class Lecturer extends Model
     {
         return $this->belongsTo(StudyProgram::class);
     }
+
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
+    }
 }
