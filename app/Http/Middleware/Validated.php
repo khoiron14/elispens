@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Middleware\Role;
+namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsStudent
+class Validated
 {
     /**
      * Handle an incoming request.
@@ -18,6 +17,8 @@ class IsStudent
      */
     public function handle(Request $request, Closure $next)
     {
-        return Auth::check() && Auth::user()->role == User::STUDENT ? $next($request) : abort(401);
+        return Auth::user()->is_validated 
+            ? $next($request) 
+            : response()->view('errors.must-validated');
     }
 }

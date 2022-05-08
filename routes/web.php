@@ -1,10 +1,18 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\StudyProgramController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\EducationController;
+use App\Http\Controllers\TeachHistoryController;
+use App\Models\Lecturer;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +25,36 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//  Detail
+Route::get('detail/{lecturer}', function (Lecturer $lecturer) {
+    return view('details.detailsExample', compact('lecturer'));
+})->name('detail');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Auth::routes(['register' => false]);
+
+Route::middleware('guest')->group(function () {
+    Route::get('register', fn () => abort(404));
+    Route::get('register/{type}', [RegisterController::class, 'showRegistrationForm'])->name('register.create');
+    Route::post('register', [RegisterController::class, 'register'])->name('register.store');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::prefix('dashboard')->group(function () {
-    Route::middleware('admin')->group(function () {
+Route::prefix('dashboard')->middleware(['auth', 'validated'])->group(function () {
+    Route::middleware('role:admin')->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::resource('users', UserController::class);
         Route::post('users/{user}/validation', [UserController::class, 'validation'])->name('users.validation');
+        Route::resource('study-programs', StudyProgramController::class)->except('show')->names('study_programs');
+        Route::resource('courses', CourseController::class)->except('show');
+    });
+    Route::middleware('role:lecturer')->group(function () {
+        Route::resource('educations', EducationController::class)->except('show');
+        Route::resource('teach-histories', TeachHistoryController::class)->except('show')->names('teaches');
+        Route::resource('certificates', CertificateController::class)->except('show');
+    });
+    Route::middleware('role:admin,lecturer,student')->group(function () {
+        Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile.index');
+        Route::post('profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
     });
 });

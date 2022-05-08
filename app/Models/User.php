@@ -47,15 +47,16 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_validated' => 'boolean',
     ];
 
     protected function roleName(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => 
-                $value == self::ADMIN ? "Admin" : 
-                ($value == self::LECTURER ? "Dosen" : 
-                ($value == self::STUDENT ? "Mahasiswa" : "Tidak Diketahui")),
+            get: fn () => 
+                $this->role == self::ADMIN ? 'Admin' : 
+                ($this->role == self::LECTURER ? 'Dosen' : 
+                ($this->role == self::STUDENT ? 'Mahasiswa' : 'Tidak Diketahui')),
         );
     }
 
@@ -63,5 +64,15 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return $this->role === $role;
+    }
+
+    public function lecturer()
+    {
+        return $this->hasOne(Lecturer::class);
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
     }
 }

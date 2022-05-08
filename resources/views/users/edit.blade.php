@@ -3,16 +3,13 @@
 @push('script')
 <script>
     $(document).ready(function() {
+        $('#identity').attr('disabled', $('#role').val() == '0');
+        
         $('#role').change((event) => {
             // if the selected role is admin
-            // then input nip or nrp disabled
-            if ($(event.target).val() == 0) {
-                $('#identity').attr('disabled', true);
-                $('#identity').attr('required', false);
-            } else {
-                $('#identity').attr('disabled', false);
-                $('#identity').attr('required', true);
-            }
+            // then input nip or nrp disabled and reset
+            $('#identity').attr('disabled', $(event.target).val() == '0');
+            $(event.target).val() == '0' ? $('#identity').val('') : '';
         });
     });
 </script>
@@ -55,7 +52,9 @@
                     <label for="role">Role</label>
                     <select class="form-control @error('role') is-invalid @enderror custom-select" id="role"
                         name="role" disabled>
-                        <option value="0" @selected($user->role==0)>Admin</option>
+                        <option value="0" @selected(old('role',$user->role)==0)>Admin</option>
+                        <option value="1" @selected(old('role',$user->role)==1)>Dosen</option>
+                        <option value="2" @selected(old('role',$user->role)==2)>Mahasiswa</option>
                     </select>
                     @error('role')
                     <span class="invalid-feedback" role="alert">
@@ -69,8 +68,15 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="identity">NIP / NRP</label>
+                    @php
+                        if ($user->roleName == 'Dosen') {
+                            $identity = $user->lecturer->nip;
+                        } elseif ($user->roleName == 'Mahasiswa') {
+                            $identity = $user->student->nrp;
+                        }
+                    @endphp
                     <input type="text" class="form-control @error('identity') is-invalid @enderror" id="identity"
-                        name="identity" value="{{ old('identity', $user->identity) }}" placeholder="Tulis NIP / NRP" disabled>
+                        name="identity" value="{{ old('identity', $identity) }}" placeholder="Tulis NIP / NRP" required>
                     @error('identity')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -113,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
 @endsection
