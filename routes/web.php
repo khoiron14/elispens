@@ -12,6 +12,7 @@ use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\TeachHistoryController;
+use App\Models\Lecturer;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,9 @@ use App\Http\Controllers\TeachHistoryController;
 */
 
 //  Detail
-Route::get('/detail', function () {
-    return view('details.detailsExample');
-});
+Route::get('detail/{lecturer}', function (Lecturer $lecturer) {
+    return view('details.detailsExample', compact('lecturer'));
+})->name('detail');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

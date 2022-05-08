@@ -22,5 +22,27 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'is_validated' => true
         ]);
+
+        User::create([
+            'name' => 'Contoh Dosen 1',
+            'email' => 'dosen1@elispens.com',
+            'password' => Hash::make('password'),
+            'is_validated' => true
+        ])->lecturer()->create([
+            'study_program_id' => 1,
+            'nip' => '11111',
+            'gender' => 'M'
+        ]);
+
+        User::create([
+            'name' => 'Contoh Dosen 2',
+            'email' => 'dosen2@elispens.com',
+            'password' => Hash::make('password'),
+            'is_validated' => true
+        ])->lecturer()->create([
+            'study_program_id' => 1,
+            'nip' => '22222',
+            'gender' => 'F'
+        ]);
     }
 }

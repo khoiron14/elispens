@@ -43,4 +43,9 @@ class Lecturer extends Model
     {
         return $this->hasMany(Certificate::class);
     }
+
+    public function researches()
+    {
+        return $this->belongsToMany(Research::class)->using(LecturerResearch::class);
+    }
 }

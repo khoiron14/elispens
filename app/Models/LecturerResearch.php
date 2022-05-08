@@ -9,19 +9,13 @@ class LecturerResearch extends Model
 {
     use HasFactory;
 
+    const PENDING = 0;
+    const ACCEPTED = 1;
+    const REJECTED = 2;
+
     protected $fillable = [
         'lecturer_id',
         'research_id',
         'status'
     ];
-
-    public function lecturer()
-    {
-        return $this->belongsTo(Lecturer::class);
-    }
-    
-    public function research()
-    {
-        return $this->belongsTo(Research::class);
-    }
 }

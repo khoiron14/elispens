@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('lecturers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('study_program_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('study_program_id')->nullable()->constrained('study_programs')->nullOnDelete();
             $table->string('nip', 18)->unique();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();

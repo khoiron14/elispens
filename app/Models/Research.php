@@ -9,14 +9,21 @@ class Research extends Model
 {
     use HasFactory;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'researches';
+
     protected $fillable = [
         'title',
         'event',
         'year',
     ];
 
-    public function lecturerResearch()
+    public function lecturers()
     {
-        return $this->hasMany(LecturerResearch::class);
+        return $this->belongsToMany(Lecturer::class)->using(LecturerResearch::class);
     }
 }
