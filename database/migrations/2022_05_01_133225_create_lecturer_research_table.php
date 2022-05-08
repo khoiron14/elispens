@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('lecturer_research', function (Blueprint $table) {
             $table->foreignId('lecturer_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('research_id')->constrained()->cascadeOnDelete();
-            $table->unsignedTinyInteger('status');
+            $table->foreignId('research_id')->constrained('researches')->cascadeOnDelete();
+            $table->unsignedTinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

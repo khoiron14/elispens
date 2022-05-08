@@ -89,7 +89,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body ">
+            <div class="modal-body">
                 <a href="{{ route('register.create', 'lecturer') }}" class="btn btn-primary btn-block">
                     <strong>Dosen</strong>
                 </a>

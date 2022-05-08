@@ -94,7 +94,7 @@
                         <div class="form-group">
                             <label for="password_confirmation">Ulangi Password</label>
                             <input type="password" class="form-control" id="password_confirmation"
-                                name="password_confirmation" placeholder="Tulis Password" required
+                                name="password_confirmation" placeholder="Masukkan Ulang Password" required
                                 autocomplete="new-password">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">

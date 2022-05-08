@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,16 +38,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|numeric|digits:1',
-        ]);
+        ];
 
-        User::create($request->merge([
+        if ($request->role == User::LECTURER) {
+            $rules['identity'] = 'required|string|max:18|unique:lecturers,nip';
+        } else if ($request->role == User::STUDENT) {
+            $rules['identity'] = 'required|string|max:10|unique:students,nrp';
+        }
+
+        $request->validate($rules);
+
+        $user = User::create($request->merge([
+            'password' => Hash::make($request->password),
             'is_validated' => true
-        ])->all());
+        ])->only('name', 'email', 'password', 'role', 'is_validated'));
+
+        if ($request->role == User::LECTURER) {
+            $user->lecturer()->create(['nip' => $request->identity]);
+        } else if ($request->role == User::STUDENT) {
+            $user->student()->create(['nrp' => $request->identity]);
+        }
 
         return redirect()->route('users.index')->withSuccess('Data user berhasil ditambahkan.');
     }
@@ -65,11 +81,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, User $user)
+    public function edit(User $user)
     {
         return view('users.edit', compact('user'));
     }
@@ -86,19 +101,29 @@ class UserController extends Controller
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed'
         ];
 
-        if ($user->role != User::ADMIN) {
-            // add some condition for not admin
+        if ($user->hasRole(User::LECTURER)) {
+            $rules['identity'] = 'required|string|max:18|unique:lecturers,nip,' . $user->lecturer->id;
+        } else if ($user->hasRole(User::STUDENT)) {
+            $rules['identity'] = 'required|string|max:10|unique:students,nrp,' . $user->student->id;
         }
-        
+
+        $request->validate($rules);
+
         if ($request->filled('password')) {
-            array_push($rules, ['password' => 'string|min:8|confirmed']);
-            $request->validate($rules);
-            $user->update($request->all());
+            $user->update($request->merge([
+                'password' => Hash::make($request->password)
+            ])->only('name', 'email', 'password'));
         } else {
-            $request->validate($rules);
-            $user->update($request->except('password'));
+            $user->update($request->except('password', 'password_confirmation'));
+        }
+
+        if ($user->hasRole(User::LECTURER)) {
+            $user->lecturer()->update(['nip' => $request->identity]);
+        } else if ($user->hasRole(User::STUDENT)) {
+            $user->student()->update(['nrp' => $request->identity]);
         }
 
         return redirect()->route('users.index')->withSuccess('Data user berhasil diubah.');
@@ -121,7 +146,8 @@ class UserController extends Controller
         return redirect()->route('users.index')->withSuccess('Data user berhasil dihapus.');
     }
 
-    public function validation(User $user) {
+    public function validation(User $user)
+    {
         $user->update([
             'is_validated' => true
         ]);

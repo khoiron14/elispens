@@ -15,7 +15,8 @@ class Page extends Model
         'url',
     ];
 
-    public function lecturer(){
+    public function lecturer()
+    {
         return $this->belongsTo(Lecturer::class);
     }
 }

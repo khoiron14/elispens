@@ -9,17 +9,14 @@ class Course extends Model
 {
     use HasFactory;
 
-     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    public $timestamps = false;
+
     protected $fillable = [
         'code',
         'name',
     ];
 
-    public function teachHistory()
+    public function histories()
     {
         return $this->hasMany(TeachHistory::class);
     }

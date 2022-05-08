@@ -57,8 +57,10 @@
         <div class="content">
             <div class="flex-center">
                 <img src="{{ asset('images/logo2.png') }}" alt="elispens" height="36">
-                <div class="line"></div>
+                @hasSection ('code') 
+                <div class="line"></div> 
                 <strong>@yield('code')</strong>
+                @endif
             </div>
             <div>@yield('message')</div>
         </div>

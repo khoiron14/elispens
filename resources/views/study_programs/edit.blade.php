@@ -1,6 +1,5 @@
 @extends('layouts.dashboard')
 
-
 @section('content')
 <div class="page-info">
     <h1>
@@ -8,7 +7,7 @@
     </h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">M</li>
+            <li class="breadcrumb-item">Manajemen</li>
             <li class="breadcrumb-item"><a href="{{ route('study_programs.index') }}">Program Studi</a></li>
             <li class="breadcrumb-item active" aria-current="page">
                 Ubah
@@ -30,10 +29,11 @@
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
+                    @enderror
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
 @endsection

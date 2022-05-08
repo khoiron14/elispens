@@ -5,9 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EducationHistory extends Model
+class Education extends Model
 {
     use HasFactory;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'educations';
 
     protected $fillable = [
         'lecturer_id',
@@ -17,9 +24,8 @@ class EducationHistory extends Model
         'year',
     ];
 
-    public function lecturer(){
+    public function lecturer()
+    {
         return $this->belongsTo(Lecturer::class);
     }
-
-
 }

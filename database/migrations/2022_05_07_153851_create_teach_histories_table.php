@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('education_histories', function (Blueprint $table) {
+        Schema::create('teach_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('lecturer_id')->constrained()->cascadeOnDelete();
-            $table->string('college');
-            $table->enum('level', ['D1', 'D3', 'D4', 'S1', 'S2', 'S3',]);
-            $table->string('degree');
+            $table->foreignId('course_id')->nullable()->constrained()->nullOnDelete();
+            $table->enum('semester', ['O', 'E']);
             $table->unsignedSmallInteger('year');
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('education_histories');
+        Schema::dropIfExists('teach_histories');
     }
 };
