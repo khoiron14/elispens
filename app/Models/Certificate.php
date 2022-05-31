@@ -20,4 +20,9 @@ class Certificate extends Model
     {
         return $this->belongsTo(Lecturer::class);
     }
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
 }

@@ -48,4 +48,8 @@ class Lecturer extends Model
     {
         return $this->belongsToMany(Research::class)->using(LecturerResearch::class);
     }
+
+    public function finalProjects() {
+        return $this->belongsToMany(FinalProject::class)->using(StudentProject::class);
+    }
 }
