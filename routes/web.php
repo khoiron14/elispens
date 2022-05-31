@@ -25,12 +25,8 @@ use App\Models\Lecturer;
 |
 */
 
-//  Detail
-Route::get('detail/{lecturer}', function (Lecturer $lecturer) {
-    return view('details.detailsExample', compact('lecturer'));
-})->name('detail');
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('detail/{lecturer}', [HomeController::class, 'lecturerDetail'])->name('lecturer_detail');
 
 Auth::routes(['register' => false]);
 
