@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('student_projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('lecturer_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('final_project_id')->constrained('final_projects')->cascadeOnDelete();
+            $table->foreignId('final_project_id')->constrained()->cascadeOnDelete();
             $table->unsignedTinyInteger('status')->default(0);
             $table->timestamps();
         });
