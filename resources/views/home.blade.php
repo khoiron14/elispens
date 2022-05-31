@@ -1,32 +1,61 @@
 @extends('layouts.app')
 
+@push('head')
+    <style>
+        @media (max-width: 500px) {
+            .headline h1  {
+                font-size: 2.2rem !important;
+            }
+        }
+        @media( min-width : 1100px ) {
+            .input-wrap {
+                width: 75% !important;
+            }
+        }
+        @media( max-width : 1099px ) {
+            .input-wrap {
+                width: 100% !important;
+            }
+        }
+    </style>
+@endpush
+
 @section('content')
 <div class="container centered-element headline">
     <h1 class="text-center"><strong>Cari Data Dosen</strong></h1>
     <p class="text-center">
         Cari Data Dosen Politeknik Elektronika Negeri Surabaya dengan Mudah!
     </p>
-    <form method="GET" action="{{ route('home') }}">
-        <div class="row">
-            <div class="form-group col-md-4 pr-md-0">
-                <label class="sr-only" for="keyword">Kata Kunci</label>
-                <input type="text" class="form-control" id="keyword" name="keyword" aria-describedby="keywordHelp" placeholder="Masukkan Kata Kunci">
-                <small id="passwordHelp" class="form-text text-muted">
-                    Berdasarkan nama atau nip.
-                </small>
-            </div>
-            <div class="form-group col-md-4 pr-md-0">
-                <label class="sr-only" for="study_program">Mata Kuliah</label>
-                <select class="form-control custom-select" id="study_program" name="study_program">
-                    @foreach ($studyPrograms as $studyProgram)
-                    <option value="{{ $studyProgram->name }}" @selected(old('study_program')==$studyProgram->name)>
-                        {{ $studyProgram->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-                <button type="submit" class="btn my-custom-form-btn btn-sm">Cari</button>
+    <form method="GET" class="input-wrap" action="{{ route('home') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group  pr-md-0">
+                        <label class="sr-only" for="keyword">Kata Kunci</label>
+                        <input type="text" class="form-control form-control-lg" id="keyword" name="keyword" aria-describedby="keywordHelp" placeholder="Masukkan Kata Kunci">
+                        <small id="passwordHelp" class="form-text text-muted">
+                            Berdasarkan nama atau nip.
+                        </small>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group  pr-md-0">
+                        <label class="sr-only" for="study_program">Mata Kuliah</label>
+                        <select class="form-control custom-select custom-select-lg" id="study_program" name="study_program">
+                            @foreach ($studyPrograms as $studyProgram)
+                            <option value="{{ $studyProgram->name }}" @selected(old('study_program')==$studyProgram->name)>
+                                {{ $studyProgram->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group ">
+                        <button type="submit" class="btn my-custom-form-btn ">Cari</button>
+                    </div>
+                </div>
+                
             </div>
         </div>
         @if (request()->query('keyword'))

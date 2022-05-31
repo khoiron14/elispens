@@ -46,7 +46,7 @@ button.my-custom-btn:hover {
 
 a.my-custom-form-btn {
     background: var(--color-main-brand) !important;
-    /* padding: 1rem 1.75rem !important; */
+    padding: 0.51rem !important;
     border-radius: 10px;
     transition: all 0.2s ease;
     text-decoration: none;
@@ -55,7 +55,7 @@ a.my-custom-form-btn {
 
 button.my-custom-form-btn {
     background: var(--color-main-brand) !important;
-    /* padding: 1rem 1.75rem !important; */
+    padding: 0.51rem !important;
     border-radius: 10px;
     transition: all 0.2s ease;
     text-decoration: none;
