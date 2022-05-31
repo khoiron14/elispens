@@ -75,7 +75,7 @@
     <div class="row main-section mt-5">
         @forelse ($lecturers as $lecturer)
             <div class="col-6 col-md-3">
-                <a href="{{ route('detail', $lecturer) }}">
+                <a href="{{ route('lecturer_detail', $lecturer) }}">
                     <figure class="figure figure-rounded">
                         <img src="{{ $lecturer->gender == 'F' ? asset('images/LandingPage/images3.png') : asset('images/LandingPage/images1.png') }}" class="figure-img img-fluid rounded" alt="Images" />
                         <figcaption class="figure-caption">{{ $lecturer->user->name }}</figcaption>

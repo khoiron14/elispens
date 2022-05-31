@@ -31,4 +31,15 @@ class HomeController extends Controller
 
         return view('home', compact('studyPrograms', 'lecturers'));
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Lecturer $lecturer
+     * @return \Illuminate\Http\Response
+     */
+    public function lecturerDetail(Lecturer $lecturer)
+    {
+        return view('details.index', compact('lecturer'));
+    }
 }

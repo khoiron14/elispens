@@ -23,7 +23,7 @@
                     <h2>Prodi</h2>
                 </div>
                 <div class="col-10 value">
-                    <h2>{{ $lecturer->studyProgram->name }}</h2>
+                    <h2>{{ $lecturer->studyProgram?->name }}</h2>
                 </div>
             </div>
             <div class="row detail-info">
