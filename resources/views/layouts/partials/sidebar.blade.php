@@ -41,6 +41,9 @@
             <li class="{{ request()->routeIs('certificates*') ? 'active-page' : '' }}">
                 <a href="{{ route('certificates.index') }}" class="active"><i class="material-icons-outlined">description</i>Sertifikat</a>
             </li>
+            <li class="{{ request()->routeIs('pages*') ? 'active-page' : '' }}">
+                <a href="{{ route('pages.index') }}" class="active"><i class="material-icons-outlined">find_in_page</i>Laman Personal</a>
+            </li>
             @endlecturer
         </ul>
     </div>
