@@ -10,13 +10,13 @@
             <div class="navbar-nav text-center">
                 @if (auth()->check())
                 @admin
-                    <a class="my-custom-btn" href="{{ route('dashboard') }}">Dashboard</a>
+                    <a class="my-custom-btn mt-3 mb-3" href="{{ route('dashboard') }}">Dashboard</a>
                 @else
-                    <a class="my-custom-btn" href="{{ route('profile.index', auth()->user()) }}">Profil</a>
+                    <a class="my-custom-btn mt-3 mb-3" href="{{ route('profile.index', auth()->user()) }}">Profil</a>
                 @endadmin
             @else
-                <a class="my-custom-btn mt-2 mb-2 ml-2 mr-2" href="{{ route('login') }}">Masuk</a>
-                <a class="my-custom-btn mt-2 mb-2 ml-2 mr-2" href="" data-toggle="modal" data-target="#registerModal">Daftar</a>
+                <a class="my-custom-btn mt-3 mb-3 ml-2 mr-2" href="{{ route('login') }}">Masuk</a>
+                <a class="my-custom-btn mt-3 mb-3 ml-2 mr-2" href="" data-toggle="modal" data-target="#registerModal">Daftar</a>
         
                 {{-- register modal --}}
                 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel"
