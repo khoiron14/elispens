@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('student_projects', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lecturer_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('final_project_id')->constrained()->cascadeOnDelete();
-            $table->unsignedTinyInteger('status')->default(0);
+            $table->string('url');
+            $table->bigInteger('imageable_id');
+            $table->string('imageable_type');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_projects');
+        Schema::dropIfExists('images');
     }
 };
