@@ -27,6 +27,7 @@ class UserSeeder extends Seeder
             'name' => 'Contoh Dosen 1',
             'email' => 'dosen1@elispens.com',
             'password' => Hash::make('password'),
+            'role' => 1,
             'is_validated' => true
         ])->lecturer()->create([
             'study_program_id' => 1,
@@ -38,6 +39,7 @@ class UserSeeder extends Seeder
             'name' => 'Contoh Dosen 2',
             'email' => 'dosen2@elispens.com',
             'password' => Hash::make('password'),
+            'role' => 1,
             'is_validated' => true
         ])->lecturer()->create([
             'study_program_id' => 1,

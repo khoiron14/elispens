@@ -36,7 +36,7 @@ class ProfileController extends Controller
             'password' => 'nullable|string|min:8|confirmed',
             'nip' => 'sometimes|required|string|max:18|unique:lecturers,nip,' . $user->lecturer?->id,
             'nrp' => 'sometimes|required|string|max:10|unique:students,nrp,' . $user->student?->id,
-            'study_program_id' => 'nullable|integer|exists:study_programs',
+            'study_program_id' => 'nullable|integer|exists:study_programs,id',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'gender' => 'nullable|in:M,F',
