@@ -30,4 +30,11 @@
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
 @endif
 
+<style>
+    img {
+        object-fit: cover;
+        object-position: center;
+    }
+</style>
+
 @stack('head')
