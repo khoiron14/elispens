@@ -17,6 +17,7 @@
                 width: 100% !important;
             }
         }
+
     </style>
 @endpush
 
@@ -88,7 +89,7 @@
                                 $photo = asset('images/male.png');
                             }
                         @endphp
-                        <img src="{{ $photo }}" class="figure-img rounded" alt="{{ $lecturer->user->name }}" width="240" height="240"/>
+                        <img src="{{ $photo }}" class="figure-img img-fluid rounded" alt="{{ $lecturer->user->name }}"/>
                         <figcaption class="figure-caption">{{ $lecturer->user->name }}</figcaption>
                     </figure>
                 </a>
