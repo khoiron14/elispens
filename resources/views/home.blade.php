@@ -77,7 +77,18 @@
             <div class="col-6 col-md-3">
                 <a href="{{ route('lecturer_detail', $lecturer) }}">
                     <figure class="figure figure-rounded">
-                        <img src="{{ $lecturer->gender == 'F' ? asset('images/LandingPage/images3.png') : asset('images/LandingPage/images1.png') }}" class="figure-img img-fluid rounded" alt="Images" />
+                        @php
+                            $photo = App\Models\Image::where('imageable_id', $lecturer->user->id)
+                                ->where('imageable_type', 'App\Models\User')->first();
+                            if ($photo) {
+                                $photo = $photo->url;
+                            } elseif ($lecturer->gender == 'F') {
+                                $photo = asset('images/female.png');
+                            } else {
+                                $photo = asset('images/male.png');
+                            }
+                        @endphp
+                        <img src="{{ $photo }}" class="figure-img rounded" alt="{{ $lecturer->user->name }}" width="240" height="240"/>
                         <figcaption class="figure-caption">{{ $lecturer->user->name }}</figcaption>
                     </figure>
                 </a>

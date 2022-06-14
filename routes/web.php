@@ -11,6 +11,7 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\TeachHistoryController;
 use App\Models\Lecturer;
 
@@ -48,6 +49,7 @@ Route::prefix('dashboard')->middleware(['auth', 'validated'])->group(function ()
         Route::resource('educations', EducationController::class)->except('show');
         Route::resource('teach-histories', TeachHistoryController::class)->except('show')->names('teaches');
         Route::resource('certificates', CertificateController::class)->except('show');
+        Route::resource('pages', PageController::class)->except('show');
     });
     Route::middleware('role:admin,lecturer,student')->group(function () {
         Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile.index');

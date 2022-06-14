@@ -26,7 +26,7 @@
     </h1>
 </div>
 <div class="main-wrapper">
-    <form action="{{ route('profile.update', $user) }}" method="POST">
+    <form action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">
@@ -120,14 +120,14 @@
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                         name="password" aria-describedby="passwordHelp" placeholder="Tulis Password"
                         autocomplete="new-password">
-                    <small id="passwordHelp" class="form-text text-muted">
-                        Kosongkan jika tidak ingin mengubah password.
-                    </small>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
+                    <small id="passwordHelp" class="form-text text-muted">
+                        Kosongkan jika tidak ingin mengubah password.
+                    </small>
                 </div>
             </div>
             <div class="col-md-6">
@@ -159,6 +159,22 @@
                     @enderror
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="photo">Foto</label>
+                    <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" name="photo" accept="image/*">
+                    @error('photo')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                    <small id="passwordHelp" class="form-text text-muted">
+                        Kosongkan jika tidak ingin mengubah foto.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-6">
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>

@@ -11,7 +11,7 @@ class Page extends Model
 
     protected $fillable = [
         'lecturer_id',
-        'name',
+        'title',
         'url',
     ];
 
