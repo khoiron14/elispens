@@ -10,7 +10,7 @@
         <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true">
-                <img src="{{ asset('images/profile.png') }}" alt="profile image" />
+                <img src="{{ auth()->user()->prot ? auth()->user()->photo->url : asset('images/male.png') }}" alt="profile image" />
                 <span>{{ auth()->user()->name }}</span><i class="material-icons dropdown-icon">keyboard_arrow_down</i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

@@ -1,6 +1,6 @@
 <div class="page-sidebar">
     <div class="logo-box">
-        <a href="#" class="logo-text">
+        <a href="{{ route('home') }}" class="logo-text">
             <img src="{{ asset('images/logo1.png') }}" alt="elispens" height="34">
         </a>
         <a href="#" id="sidebar-close"><i class="material-icons">close</i></a>
@@ -40,6 +40,9 @@
             </li>
             <li class="{{ request()->routeIs('certificates*') ? 'active-page' : '' }}">
                 <a href="{{ route('certificates.index') }}" class="active"><i class="material-icons-outlined">description</i>Sertifikat</a>
+            </li>
+            <li class="{{ request()->routeIs('pages*') ? 'active-page' : '' }}">
+                <a href="{{ route('pages.index') }}" class="active"><i class="material-icons-outlined">find_in_page</i>Laman Personal</a>
             </li>
             @endlecturer
         </ul>
