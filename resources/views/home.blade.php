@@ -6,6 +6,9 @@
             .headline h1  {
                 font-size: 2.2rem !important;
             }
+            .main .main-section a p {
+                font-size: 1rem;
+            }
         }
         @media( min-width : 1100px ) {
             .input-wrap {
@@ -90,8 +93,8 @@
                             }
                         @endphp
                         <img src="{{ $photo }}" class="figure-img img-fluid rounded" alt="{{ $lecturer->user->name }}"/>
-                        <figcaption class="figure-caption">{{ $lecturer->user->name }}</figcaption>
                     </figure>
+                    <p class="figure-caption">{{ $lecturer->user->name }}</p>
                 </a>
             </div>
         @empty
