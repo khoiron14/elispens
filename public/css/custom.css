@@ -113,14 +113,31 @@ button.my-custom-form-btn:hover {
     background-color: var(--color-grey);
 }
 
-.main .main-section figure figcaption {
+.main .main-section a {
+    text-decoration: none;
+    text-align: justify;
+}
+
+.main .main-section a p {
     color: var(--color-carbon);
     font-weight: 500;
     font-size: 1.25rem;
 }
 
+.main .main-section figure {
+    transition: all 0.2s ease;
+    width: 100%;
+    /* height: 100%; */
+    /* height: 100%; */
+    height: 80%;
+}
+
 .main .main-section figure img {
     transition: all 0.2s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: cover;
 }
 
 .main .main-section figure:hover img {

@@ -31,7 +31,7 @@ class ProfileController extends Controller
 
     public function update(Request $request, User $user)
     {
-        dd($user->photo);
+        // dd($user->photo);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
