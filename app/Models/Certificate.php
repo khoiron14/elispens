@@ -21,8 +21,8 @@ class Certificate extends Model
         return $this->belongsTo(Lecturer::class);
     }
 
-    public function files()
+    public function file()
     {
-        return $this->morphMany(File::class, 'fileable');
+        return $this->morphOne(File::class, 'fileable');
     }
 }

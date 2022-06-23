@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Certificate;
 use Illuminate\Http\Request;
 
@@ -41,10 +42,21 @@ class CertificateController extends Controller
             'subject' => 'required|string|max:255',
             'publisher' => 'required|string|max:255',
             'date' => 'required|date',
+            'file' => 'mimes:pdf'
         ]);
-
-        auth()->user()->lecturer->certificates()
+        
+        $certificate = auth()->user()->lecturer->certificates()
             ->create($request->only('subject', 'publisher', 'date'));
+
+        if ($request->hasFile('file')) {
+            $certificate->file()->create([
+                'url' => $this->upload(
+                    'certificate', 
+                    $request->file('file'),
+                    autoNamed: false
+                ) 
+            ]);
+        }
 
         return redirect()->route('certificates.index')->withSuccess('Data sertifikat berhasil ditambahkan.');
     }
@@ -81,9 +93,17 @@ class CertificateController extends Controller
             'subject' => 'required|string|max:255',
             'publisher' => 'required|string|max:255',
             'date' => 'required|date',
+            'file' => 'mimes:pdf'
         ]);
 
         $certificate->update($request->only('subject', 'publisher', 'date'));
+
+        if ($request->hasFile('file')) {
+            File::updateOrCreate(
+                ['fileable_id' => $certificate->id, 'fileable_type' => 'App\Models\Certificate'],
+                ['url' => $this->upload('certificate', $request->file('file'), $certificate->file, autoNamed: false) ]
+            );
+        }
 
         return redirect()->route('certificates.index')->withSuccess('Data sertifikat berhasil diubah.');
     }
@@ -100,6 +120,8 @@ class CertificateController extends Controller
             abort(403);
         }
 
+        $this->deleteDirectory($certificate->file);
+        $certificate->file->delete();
         $certificate->delete();
 
         return redirect()->route('certificates.index')->withSuccess('Data sertifikat berhasil dihapus.');

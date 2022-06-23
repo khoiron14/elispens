@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Image;
 use App\Models\StudyProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -30,6 +31,7 @@ class ProfileController extends Controller
 
     public function update(Request $request, User $user)
     {
+        // dd($user->photo);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
@@ -40,6 +42,7 @@ class ProfileController extends Controller
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'gender' => 'nullable|in:M,F',
+            'photo' => 'image|mimes:jpeg,png,jpg,svg|max:2560'
         ]);
 
         if ($request->filled('password')) {
@@ -48,6 +51,13 @@ class ProfileController extends Controller
             ])->only('name', 'email', 'password'));
         } else {
             $user->update($request->except('password', 'password_confirmation'));
+        }
+
+        if ($request->hasFile('photo')) {
+            Image::updateOrCreate(
+                ['imageable_id' => $user->id, 'imageable_type' => 'App\Models\User'],
+                ['url' => $this->upload('profile', $request->file('photo'), $user->photo) ]
+            );
         }
 
         if ($user->hasRole(User::LECTURER)) {

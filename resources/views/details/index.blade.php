@@ -38,7 +38,18 @@
     <div class="row ">
         <div class="col-sm-12 col-lg-4 img-figure ">
             <figure class="figure">
-                <img src="{{ $lecturer->gender == 'F' ? asset('images/LandingPage/images3.png') : asset('images/LandingPage/images1.png') }}" class="figure-img img-fluid" alt="figureImage" />
+                @php
+                    $photo = App\Models\Image::where('imageable_id', $lecturer->user->id)
+                        ->where('imageable_type', 'App\Models\User')->first();
+                    if ($photo) {
+                        $photo = $photo->url;
+                    } elseif ($lecturer->gender == 'F') {
+                        $photo = asset('images/female.png');
+                    } else {
+                        $photo = asset('images/male.png');
+                    }
+                @endphp
+                <img src="{{ $photo }}" class="figure-img" alt="{{ $lecturer->user->name }}" width="260" height="260"/>
             </figure>
         </div>
         <div class="col-sm-12 col-lg-8 info info-wrap">

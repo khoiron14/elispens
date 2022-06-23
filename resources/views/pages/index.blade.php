@@ -17,15 +17,15 @@
 <div class="page-info">
     <div class="d-flex justify-content-between">
         <h1>
-            <strong>Manajemen Sertifikat</strong>
+            <strong>Manajemen Laman Personal</strong>
         </h1>
-        <a href="{{ route('certificates.create') }}" class="btn btn-sm btn-primary align-self-start">Tambah</a>
+        <a href="{{ route('pages.create') }}" class="btn btn-sm btn-primary align-self-start">Tambah</a>
     </div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Manajemen</li>
             <li class="breadcrumb-item active" aria-current="page">
-                Sertifikat
+                Laman Personal
             </li>
         </ol>
     </nav>
@@ -34,28 +34,21 @@
     <table id="table" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Subjek</th>
-                <th>Penerbit</th>
-                <th>Tanggal</th>
+                <th>Judul</th>
                 <th>Opsi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($certificates as $certificate)
+            @foreach ($pages as $page)
             <tr>
-                <td>{{ $certificate->subject }}</td>
-                <td>{{ $certificate->publisher }}</td>
-                <td>{{ $certificate->date }}</td>
+                <td>
+                    <a href="{{ $page->url }}" target="_blank">{{ $page->title }}</a>
+                </td>
                 <td class="d-flex">
-                    @if ($certificate->file)
-                    <a class="btn btn-sm btn-info mr-1" href="{{ $certificate->file->url }}" target="_blank">
-                        Lihat
-                    </a>
-                    @endif
-                    <a class="btn btn-sm btn-secondary mr-1" href="{{ route('certificates.edit', $certificate->id) }}">
+                    <a class="btn btn-sm btn-secondary mr-1" href="{{ route('pages.edit', $page->id) }}">
                         Ubah
                     </a>
-                    <form action="{{ route('certificates.destroy', $certificate->id) }}" method="POST">
+                    <form action="{{ route('pages.destroy', $page->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" 
@@ -71,9 +64,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Subjek</th>
-                <th>Penerbit</th>
-                <th>Tanggal</th>
+                <th>Judul</th>
                 <th>Opsi</th>
             </tr>
         </tfoot>
