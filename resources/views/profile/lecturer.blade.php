@@ -162,13 +162,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="photo">Foto</label>
-                    <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" name="photo" accept="image/*">
+                    <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" name="photo" aria-describedby="photoHelp" accept="image/*">
                     @error('photo')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-                    <small id="passwordHelp" class="form-text text-muted">
+                    <small id="photoHelp" class="form-text text-muted">
                         Kosongkan jika tidak ingin mengubah foto.
                     </small>
                 </div>
