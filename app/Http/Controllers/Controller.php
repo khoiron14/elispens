@@ -13,22 +13,27 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function upload($path, $file, $item = null)
+    public function upload($path, $file, $item = null, $autoNamed = true)
     {
-        if ($item) {
-            Storage::disk('public')
-                ->deleteDirectory(Str::beforeLast($item->url, '/'));
-        }
+        if ($item) $this->deleteDirectory($item);
 
-        $name = Str::orderedUuid();
+        $uuid = Str::orderedUuid();
+        $name = $autoNamed ? $uuid : pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $ext = $file->getClientOriginalExtension() ? 
             $file->getClientOriginalExtension() : 
             Str::after($file->getMimeType(), '/');
 
         return $file->storeAs(
             $path,
-            Str::substr($name, -4). '/' . $name. '.' . $ext,
+            Str::substr($uuid, -4). '/' . $name. '.' . $ext,
             'public'
+        );
+    }
+
+    public function deleteDirectory($item)
+    {
+        Storage::disk('public')->deleteDirectory(
+            Str::beforeLast($item->getRawOriginal('url'), '/')
         );
     }
 }

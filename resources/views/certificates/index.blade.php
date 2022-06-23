@@ -47,6 +47,11 @@
                 <td>{{ $certificate->publisher }}</td>
                 <td>{{ $certificate->date }}</td>
                 <td class="d-flex">
+                    @if ($certificate->file)
+                    <a class="btn btn-sm btn-info mr-1" href="{{ $certificate->file->url }}" target="_blank">
+                        Lihat
+                    </a>
+                    @endif
                     <a class="btn btn-sm btn-secondary mr-1" href="{{ route('certificates.edit', $certificate->id) }}">
                         Ubah
                     </a>

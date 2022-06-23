@@ -16,7 +16,7 @@
     </nav>
 </div>
 <div class="main-wrapper">
-    <form action="{{ route('certificates.update', $certificate) }}" method="POST">
+    <form action="{{ route('certificates.update', $certificate) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
@@ -56,6 +56,20 @@
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="file">File</label>
+                    <input type="file" class="form-control @error('file') is-invalid @enderror" id="file" name="file" aria-describedby="fileHelp" accept="application/pdf">
+                    @error('file')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                    <small id="fileHelp" class="form-text text-muted">
+                        Kosongkan jika tidak ingin mengupload file. Hanya anda yang dapat mendownload file yang sudah di upload.
+                    </small>
                 </div>
             </div>
         </div>
