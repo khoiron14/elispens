@@ -2,6 +2,12 @@
 
 @push('head')
     <style>
+        body {
+            background-image: url('/images/Union.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position:  top;
+        }
         @media (max-width: 500px) {
             .headline h1  {
                 font-size: 2.2rem !important;
