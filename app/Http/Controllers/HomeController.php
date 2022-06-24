@@ -8,24 +8,16 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->query('keyword')) {
-            $lecturers = Lecturer::query()
-                ->with(['user' => function ($query) {
-                    $query->select('id', 'name');
-                }])->whereRelation(
-                    'studyProgram', 'name', request()->query('study_program')
-                )->where(function ($query) {
-                    $query->whereRelation('user', 'name', 'like', '%' . request()->query('keyword') . '%')
-                        ->orWhere('nip', 'like', '%' . request()->query('keyword') . '%');
-                })->get();
-        } else {
-            $lecturers = Lecturer::query()
-            ->with(['user' => function ($query) {
-                $query->select('id', 'name');
-            }])->get();
-        }
+        $lecturers = Lecturer::when($request->study_program, function ($query, $studyProgram) {
+                if ($studyProgram != "Semua Jurusan") {
+                    $query->whereRelation('studyProgram', 'name', 'like', '%' . $studyProgram . '%');
+                }
+            })->when($request->keyword, function ($query, $keyword) {
+                $query->whereRelation('user', 'name', 'like', '%' . $keyword . '%')
+                    ->orWhere('nip', 'like', '%' . $keyword . '%');
+            })->validated()->with('user:id,name')->with('studyProgram')->get();
 
         $studyPrograms = StudyProgram::all();
 
