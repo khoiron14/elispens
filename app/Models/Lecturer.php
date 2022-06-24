@@ -19,6 +19,17 @@ class Lecturer extends Model
         'is_active',
     ];
 
+    /**
+     * Scope a query to only include validated lecturers.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return void
+     */
+    public function scopeValidated($query)
+    {
+        $query->whereRelation('user', 'is_validated', 1);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -57,4 +68,5 @@ class Lecturer extends Model
     public function finalProjects() {
         return $this->belongsToMany(FinalProject::class)->using(StudentProject::class);
     }
+
 }

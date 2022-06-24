@@ -42,7 +42,13 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="form-group  pr-md-0">
                         <label class="sr-only" for="keyword">Kata Kunci</label>
-                        <input type="text" class="form-control form-control-lg" id="keyword" name="keyword" aria-describedby="keywordHelp" placeholder="Masukkan Kata Kunci">
+                        <input type="text" 
+                            class="form-control form-control-lg" 
+                            value="{{ request()->keyword }}"
+                            id="keyword" 
+                            name="keyword" 
+                            aria-describedby="keywordHelp" 
+                            placeholder="Masukkan Kata Kunci">
                         <small id="passwordHelp" class="form-text text-muted">
                             Berdasarkan nama atau nip.
                         </small>
@@ -52,8 +58,11 @@
                     <div class="form-group  pr-md-0">
                         <label class="sr-only" for="study_program">Mata Kuliah</label>
                         <select class="form-control custom-select custom-select-lg" id="study_program" name="study_program">
+                            <option value="Semua Jurusan" @selected(request()->study_program=="Semua Jurusan")>
+                                Semua Jurusan
+                            </option>
                             @foreach ($studyPrograms as $studyProgram)
-                            <option value="{{ $studyProgram->name }}" @selected(old('study_program')==$studyProgram->name)>
+                            <option value="{{ $studyProgram->name }}" @selected(request()->study_program==$studyProgram->name)>
                                 {{ $studyProgram->name }}
                             </option>
                             @endforeach
@@ -61,20 +70,20 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <div class="form-group ">
+                    <div class="form-group">
                         <button type="submit" class="btn my-custom-form-btn ">Cari</button>
                     </div>
                 </div>
-                
             </div>
         </div>
-        @if (request()->query('keyword'))
+        @if (request()->study_program)
             <div class="row">
                 <div class="col-12 d-flex flex-row">
                     <div class="mr-2">
-                        Mencari "{{ request()->query('keyword') }}" di {{ request()->query('study_program') }}
+                        Mencari <strong>{{ request()->keyword }}</strong> di <strong>{{ request()->study_program }}</strong>.
+                        {{ $lecturers->count() }} Hasil.
                     </div>
-                    <a href="{{ route('home') }}">reset</a>
+                    <a href="{{ route('home') }}">Reset Pencarian</a>
                 </div>
             </div>
         @endif
@@ -104,7 +113,9 @@
                 </a>
             </div>
         @empty
-            <span>Tidak ada data.</span>
+            <div class="text-center w-100">
+                <span class="text-muted">Tidak ada data.</span>
+            </div>
         @endforelse
     </div>
 </div>
