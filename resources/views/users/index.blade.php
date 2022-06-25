@@ -8,7 +8,9 @@
 <script src="{{ asset('plugins/DataTables/datatables.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('#table').DataTable();
+        $('#table').DataTable({
+            "order": [],
+        });
     });
 </script>
 @endpush
