@@ -95,7 +95,27 @@
         @forelse ($lecturers as $lecturer)
             <div class="col-6 col-md-3">
                 <a href="{{ route('lecturer_detail', $lecturer) }}">
-                    <figure class="figure figure-rounded">
+                    <div class="figure-wrap figure-rounded">
+                        <div class="images">
+                            @php
+                                $photo = App\Models\Image::where('imageable_id', $lecturer->user->id)
+                                    ->where('imageable_type', 'App\Models\User')->first();
+                                if ($photo) {
+                                    $photo = $photo->url;
+                                } elseif ($lecturer->gender == 'F') {
+                                    $photo = asset('images/female.png');
+                                } else {
+                                    $photo = asset('images/male.png');
+                                }
+                            @endphp
+                            <img src="{{ $photo }}" class="" alt="{{ $lecturer->user->name }}"/>
+                        </div>
+                        <div class="text">
+                            <p class="">{{ $lecturer->user->name }}</p>
+                        </div>
+                       
+                    </div>
+                    {{-- <figure class="figure figure-rounded">
                         @php
                             $photo = App\Models\Image::where('imageable_id', $lecturer->user->id)
                                 ->where('imageable_type', 'App\Models\User')->first();
@@ -109,7 +129,7 @@
                         @endphp
                         <img src="{{ $photo }}" class="figure-img img-fluid rounded" alt="{{ $lecturer->user->name }}"/>
                     </figure>
-                    <p class="figure-caption">{{ $lecturer->user->name }}</p>
+                    <p class="figure-caption">{{ $lecturer->user->name }}</p> --}}
                 </a>
             </div>
         @empty
